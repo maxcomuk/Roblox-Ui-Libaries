@@ -296,7 +296,7 @@ function Lib:Init(Settings)
 
 		if success and response then
 			_VortexHubKey568910 = true
-			print(response)
+			print(response, success)
 		else
 			_VortexHubKey568910 = false
 		end
