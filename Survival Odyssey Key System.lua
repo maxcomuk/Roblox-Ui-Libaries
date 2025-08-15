@@ -289,6 +289,11 @@ function Lib:Init(Settings)
 			setclipboard(Settings.DiscordLink)
 		end
 	end)
+
+	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
+		local CurrentKeyInput = readfile("Vortex Hub Premium License Key.txt")
+		_VortexHubKey568910 = pcall(Settings.Callback, CurrentKeyInput)
+	end	
 	
 	if _VortexHubKey568910 then
 		return true
@@ -298,6 +303,8 @@ function Lib:Init(Settings)
 			writefile("Vortex Hub Premium License Key.txt", KeyInput.Text .. "  \n DO NOT SHARE THIS KEY TO ANYBODY AS IT WILL DETECT IT AUTOMATICALLY AND BLOCK THE LICENSE FROM BEING USED AGAIN")
 		end
 		VortexHubKeySystem:Destroy()
+		Conn1:Disconnect()
+		Conn2:Disconnect()
 	end
 	return _VortexHubKey568910
 end
