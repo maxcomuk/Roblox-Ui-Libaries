@@ -274,7 +274,7 @@ function Lib:Init(Settings)
 		local key = KeyInput.Text
 		local Success = Settings.Callback(key)
 		
-		if success then
+		if Success then
 			_VortexHubKey568910 = true
 		else
 			KeyInput.Text = "Invalid Key"
@@ -292,14 +292,7 @@ function Lib:Init(Settings)
 	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
 		local CurrentKeyInput = readfile("Vortex Hub Premium License Key.txt")
 		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
-		local success, response = pcall(Settings.Callback, firstline)
-
-		if success and response then
-			_VortexHubKey568910 = true
-			print(response, success)
-		else
-			_VortexHubKey568910 = false
-		end
+		_VortexHubKey568910 = Settings.Callback(firstline)
 	end	
 	
 	if _VortexHubKey568910 then
