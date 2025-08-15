@@ -272,10 +272,11 @@ function Lib:Init(Settings)
 	
 	local Conn1 = Button.MouseButton1Click:Connect(function()
 		local key = KeyInput.Text
-		local Success = Settings.Callback(key)
+		local Success, response = Settings.Callback(key)
 		
-		if Success then
+		if success and response then
 			_VortexHubKey568910 = true
+			print(response)
 		else
 			KeyInput.Text = "Invalid Key"
 			_VortexHubKey568910 = false
