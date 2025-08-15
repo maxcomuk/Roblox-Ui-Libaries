@@ -275,7 +275,6 @@ function Lib:Init(Settings)
 		local Success = Settings.Callback(key)
 		
 		if Success then
-			KeyInput.Text = "Success"
 			_VortexHubKey568910 = true
 		else
 			KeyInput.Text = "Invalid Key"
