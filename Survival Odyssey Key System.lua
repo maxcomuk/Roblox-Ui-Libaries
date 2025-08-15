@@ -296,17 +296,21 @@ function Lib:Init(Settings)
 
 		if success then
 			_VortexHubKey568910 = true
-			KeyInput.Text = firstline
-
-			VortexHubKeySystem:Destroy()
-			Conn1:Disconnect()
-			Conn2:Disconnect()
 		else
 			_VortexHubKey568910 = false
 		end
 	end	
 	
 	if _VortexHubKey568910 then
+		if VortexHubKeySystem then
+			VortexHubKeySystem:Destroy()
+			if Conn1 then
+				Conn1:Disconnect()
+			end
+			if Conn2 then
+				Conn2:Disconnect()
+			end	
+		end
 		return true
 	else
 		repeat task.wait() until _VortexHubKey568910 == true
