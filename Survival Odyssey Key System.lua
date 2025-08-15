@@ -291,8 +291,8 @@ function Lib:Init(Settings)
 
 	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
 		local CurrentKeyInput = readfile("Vortex Hub Premium License Key.txt")
-		local firstLine = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
-		_VortexHubKey568910 = pcall(Settings.Callback, CurrentKeyInput)
+		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
+		_VortexHubKey568910 = pcall(Settings.Callback, firstline)
 	end	
 	
 	if _VortexHubKey568910 then
