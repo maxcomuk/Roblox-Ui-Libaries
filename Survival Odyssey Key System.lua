@@ -272,11 +272,10 @@ function Lib:Init(Settings)
 	
 	local Conn1 = Button.MouseButton1Click:Connect(function()
 		local key = KeyInput.Text
-		local Success, response = Settings.Callback(key)
+		local Success = Settings.Callback(key)
 		
-		if success and response then
+		if success then
 			_VortexHubKey568910 = true
-			print(response)
 		else
 			KeyInput.Text = "Invalid Key"
 			_VortexHubKey568910 = false
@@ -293,10 +292,11 @@ function Lib:Init(Settings)
 	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
 		local CurrentKeyInput = readfile("Vortex Hub Premium License Key.txt")
 		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
-		local success, error = pcall(Settings.Callback, firstline)
+		local success, response = pcall(Settings.Callback, firstline)
 
-		if success then
+		if success and response then
 			_VortexHubKey568910 = true
+			print(response)
 		else
 			_VortexHubKey568910 = false
 		end
