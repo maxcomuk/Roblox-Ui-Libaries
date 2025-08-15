@@ -296,8 +296,8 @@ function Lib:Init(Settings)
 		repeat task.wait() until _VortexHubKey568910 == true
 		if _VortexHubKey568910 and writefile then
 			writefile("Vortex Hub Premium License Key.txt", KeyInput.Text .. "  \n DO NOT SHARE THIS KEY TO ANYBODY AS IT WILL DETECT IT AUTOMATICALLY AND BLOCK THE LICENSE FROM BEING USED AGAIN")
+			VortexHubKeySystem:Destroy()
 		end
-		VortexHubKeySystem:Destroy()
 	end
 	return _VortexHubKey568910
 end
