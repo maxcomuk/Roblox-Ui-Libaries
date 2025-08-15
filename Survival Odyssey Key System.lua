@@ -297,6 +297,10 @@ function Lib:Init(Settings)
 		if success then
 			_VortexHubKey568910 = true
 			KeyInput.Text = firstline
+
+			VortexHubKeySystem:Destroy()
+			Conn1:Disconnect()
+			Conn2:Disconnect()
 		else
 			_VortexHubKey568910 = false
 		end
