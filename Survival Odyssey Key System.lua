@@ -289,7 +289,7 @@ function Lib:Init(Settings)
 		end
 	end)
 
-	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
+	if readfile and isfile and isfile("Survival Odyssey Premium Key #1.txt") then
 		local CurrentKeyInput = readfile("Survival Odyssey Premium Key #1.txt")
 		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
 		_VortexHubKey568910 = Settings.Callback(firstline)
