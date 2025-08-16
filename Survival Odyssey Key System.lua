@@ -132,7 +132,7 @@ function Lib:Init(Settings)
 	--Properties:
 
 	VortexHubKeySystem.Name = "Vortex Hub Key System"
-	VortexHubKeySystem.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	VortexHubKeySystem.Parent = (gethui and gethui()) or game:GetService("CoreGui")
 	VortexHubKeySystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	Main.Name = "Main"
