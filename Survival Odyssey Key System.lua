@@ -290,7 +290,7 @@ function Lib:Init(Settings)
 	end)
 
 	if readfile and isfile and isfile("Vortex Hub Premium License Key.txt") then
-		local CurrentKeyInput = readfile("Vortex Hub Premium License Key.txt")
+		local CurrentKeyInput = readfile("Survival Odyssey Premium Key #1.txt")
 		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
 		_VortexHubKey568910 = Settings.Callback(firstline)
 	end	
@@ -309,7 +309,7 @@ function Lib:Init(Settings)
 	else
 		repeat task.wait() until _VortexHubKey568910 == true
 		if _VortexHubKey568910 and writefile then
-			writefile("Vortex Hub Premium License Key.txt", KeyInput.Text .. "  \n DO NOT SHARE THIS KEY TO ANYBODY AS IT WILL DETECT IT AUTOMATICALLY AND BLOCK THE LICENSE FROM BEING USED AGAIN")
+			writefile("Survival Odyssey Premium Key #1.txt", KeyInput.Text .. "  \n DO NOT SHARE THIS KEY TO ANYBODY AS IT WILL DETECT IT AUTOMATICALLY AND BLOCK THE LICENSE FROM BEING USED AGAIN")
 		end
 		VortexHubKeySystem:Destroy()
 		Conn1:Disconnect()
