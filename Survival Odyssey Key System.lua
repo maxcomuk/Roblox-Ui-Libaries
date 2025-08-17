@@ -292,7 +292,20 @@ function Lib:Init(Settings)
 	if readfile and isfile and isfile("Survival Odyssey Premium Key #1.txt") then
 		local CurrentKeyInput = readfile("Survival Odyssey Premium Key #1.txt")
 		local firstline = CurrentKeyInput:match("([^\n]+)")  -- gets only the first line
-		_VortexHubKey568910 = Settings.Callback(firstline)
+		local Success = Settings.Callback(firstline)
+
+		if Success then
+			_VortexHubKey568910 = true
+
+			if VortexHubKeySystem then
+				VortexHubKeySystem:Destroy()
+				if conn1 then conn1:Disconnect() end
+				if conn2 then conn2:Disconnect() end
+			end
+			return true
+		else
+			_VortexHubKey568910 = false
+		end
 	end	
 	
 	if _VortexHubKey568910 then
