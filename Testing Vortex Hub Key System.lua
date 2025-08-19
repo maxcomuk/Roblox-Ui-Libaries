@@ -361,7 +361,7 @@ function Lib:Init(Settings)
 	TextLabel.Font = Enum.Font.SourceSansBold
 	TextLabel.Text = Settings["Description"]
 	TextLabel.TextColor3 = Color3.fromRGB(156, 156, 156)
-	TextLabel.TextSize = 20.000
+	TextLabel.TextSize = 40.000
 	TextLabel.TextWrapped = true
 
 	UIAspectRatioConstraint_10.Parent = TextLabel
