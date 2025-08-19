@@ -515,7 +515,6 @@ function Lib:Init(Settings)
                 VortexHubKeySystem:Destroy()
 		end
 		return _VortexHubKey568910
-        end
     end
 end
 
