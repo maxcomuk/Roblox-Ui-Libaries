@@ -84,17 +84,17 @@ function LoadingScreenUI:Load()
 	UIAspectRatioConstraint_4.AspectRatio = 1.0826445817947388
 	
 	local FadeInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0, false, 0)
-	FadeGoal = {}
+	local FadeGoal = {}
 	FadeGoal.Size = UDim2.new(0.5, 0, 0.5, 0)
 	local FadeTween = TweenService:Create(Main, FadeInfo, FadeGoal)
 
 	local LoadingInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, false, 0.1)
-	LoadingGoal = {}
+	local LoadingGoal = {}
 	LoadingGoal.Rotation = (ImageLabel.Rotation + 360)
 	local LoadingTween = TweenService:Create(ImageLabel, LoadingInfo, LoadingGoal)
 	
 	local FinishLoadInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
-	FinishGoal = {}
+	local FinishGoal = {}
 	FinishGoal.Size = UDim2.new(0, 0, 0, 0)
 	local FinishTween = TweenService:Create(Main, FinishLoadInfo, FinishGoal)
 	
@@ -130,10 +130,10 @@ function Lib:Init(Settings)
     for name, value in pairs({
         ["Description"] = "Vortex Hub Key System",
         ["DiscordLink"] = "https://discord.gg/ZbgeVWgYPd",
-        {"KeyLink"} = "https://google.com"
-        {"Callback"} = function(...) return true end,
+        ["KeyLink"] = "https://google.com",
+        ["Callback"] = function(...) return true end,
     }) do
-        if Settings[name] = nil and typeof(Settings[name]) ~= typeof(value) then
+        if Settings[name] == nil and typeof(Settings[name]) ~= typeof(value) then
             Settings[name] = value
         end
     end
@@ -299,7 +299,7 @@ function Lib:Init(Settings)
 	TextButton_2.Position = UDim2.new(0.5, 0, 0.5, 0)
 	TextButton_2.Size = UDim2.new(1, 0, 1, 0)
 	TextButton_2.Font = Enum.Font.SourceSansBold
-	TextButton_2.Text = Settings{"KeyLink"}
+	TextButton_2.Text = Settings["KeyLink"]
 	TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextButton_2.TextSize = 25.000
 
