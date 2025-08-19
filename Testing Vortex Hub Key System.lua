@@ -1,8 +1,8 @@
-local LoadingScreenUI = {
-	-- Services
-	local TweenService = game:GetService("TweenService")
+local LoadingScreenUI = {}
 
-	-- Instances
+local TweenService = game:GetService("TweenService")
+
+function LoadingScreenUI:Load()
 	local LoadingKeySystem = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
 	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
@@ -15,7 +15,6 @@ local LoadingScreenUI = {
 	local ImageLabel = Instance.new("ImageLabel")
 	local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 
-	-- Properties
 	LoadingKeySystem.Name = "Loading Key System"
 	LoadingKeySystem.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	LoadingKeySystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -93,4 +92,6 @@ local LoadingScreenUI = {
 	LoadingTween:Cancel()
 	LoadingTween:Destroy()
 	Main:Destroy()
-}
+end
+
+LoadingScreenUI:Load()
