@@ -27,7 +27,7 @@ function LoadingScreenUI:Load()
 	Main.BorderColor3 = Color3.new(0, 0, 0)
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Size = UDim2.new(0.5, 0, 0.5, 0)
+	Main.Size = UDim2.new(0, 0, 0, 0)
 
 	UIAspectRatioConstraint.Parent = Main
 	UIAspectRatioConstraint.AspectRatio = 2.007751941680908
@@ -82,15 +82,41 @@ function LoadingScreenUI:Load()
 
 	UIAspectRatioConstraint_4.Parent = ImageLabel
 	UIAspectRatioConstraint_4.AspectRatio = 1.0826445817947388
+	
+	local FadeInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0, false, 0)
+	FadeGoal = {}
+	FadeGoal.Size = UDim2.new(0.5, 0, 0.5, 0)
+	local FadeTween = TweenService:Create(Main, FadeInfo, FadeGoal)
 
 	local LoadingInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, false, 0.1)
 	LoadingGoal = {}
 	LoadingGoal.Rotation = (ImageLabel.Rotation + 360)
 	local LoadingTween = TweenService:Create(ImageLabel, LoadingInfo, LoadingGoal)
+	
+	local FinishLoadInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+	FinishGoal = {}
+	FinishGoal.Size = UDim2.new(0, 0, 0, 0)
+	local FinishTween = TweenService:Create(Main, FinishLoadInfo, FinishGoal)
+	
+	TextLabel.Visible = false
+	ImageLabel.Visible = false
+	
+	FadeTween:Play()
+	FadeTween.Completed:Wait()
+	
+	TextLabel.Visible = true	
+	ImageLabel.Visible = true
+	
 	LoadingTween:Play()
 	task.wait(2)
 	LoadingTween:Cancel()
 	LoadingTween:Destroy()
+	
+	TextLabel.Visible = false
+	ImageLabel.Visible = false
+	
+	FinishTween:Play()
+	FinishTween.Completed:Wait()
 	Main:Destroy()
 end
 
