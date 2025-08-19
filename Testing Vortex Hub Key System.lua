@@ -1,3 +1,17 @@
+local Keylib = loadstring(game:HttpGet("https://raw.githubusercontent.com/maxcomuk/Roblox-Ui-Libaries/main/Testing%20Vortex%20Hub%20Key%20System.lua"))()
+
+Keylib:Init({
+	Description = "Use the get key link and paste it in your browser, once you have the key use it below",
+	DiscordLink = "https://discord.gg/ZbgeVWgYPd",
+	KeyLink = "https://workink.net/1ZQb/hrvpte1t",
+	Callback = function(Key)
+		if Key == "1234" then
+			return true
+		end
+	end
+})
+
+
 local LoadingScreenUI = {}
 
 local TweenService = game:GetService("TweenService")
@@ -501,18 +515,36 @@ function Lib:Init(Settings)
                 VortexHubKeySystem:Destroy()
             end
 		else
-			repeat task.wait() until _VortexHubKey == true
-			if _VortexHubKey and writefile then
-				writefile("Vortex Hub Key System #1.txt", KeyInput.Text)
-			end
-                if conn1 then conn1:Disconnect() end
-                if conn2 then conn2:Disconnect() end
-                if conn3 then conn3:Disconnect() end
-                if conn4 then conn4:Disconnect() end
-                if conn5 then conn5:Disconnect() end
-                if conn6 then conn6:Disconnect() end
-                if conn7 then conn7:Disconnect() end
-                VortexHubKeySystem:Destroy()
+			_VortexHubKey = false
+		end
+		return true
+	end
+
+	if _VortexHubKey then
+		if VortexHubKeySystem then
+            if conn1 then conn1:Disconnect() end
+            if conn2 then conn2:Disconnect() end
+            if conn3 then conn3:Disconnect() end
+            if conn4 then conn4:Disconnect() end
+            if conn5 then conn5:Disconnect() end
+            if conn6 then conn6:Disconnect() end
+        	if conn7 then conn7:Disconnect() end
+            VortexHubKeySystem:Destroy()
+		end
+	else
+		repeat task.wait() until _VortexHubKey == true
+		if _VortexHubKey and writefile then
+			writefile("Vortex Hub Key System #1.txt", KeyInput.Text)
+		end
+		if VortexHubKeySystem then
+            if conn1 then conn1:Disconnect() end
+            if conn2 then conn2:Disconnect() end
+            if conn3 then conn3:Disconnect() end
+            if conn4 then conn4:Disconnect() end
+            if conn5 then conn5:Disconnect() end
+            if conn6 then conn6:Disconnect() end
+        	if conn7 then conn7:Disconnect() end
+            VortexHubKeySystem:Destroy()
 		end
 		return _VortexHubKey568910
     end
