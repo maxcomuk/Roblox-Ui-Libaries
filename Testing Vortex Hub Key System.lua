@@ -1,17 +1,3 @@
-local Keylib = loadstring(game:HttpGet("https://raw.githubusercontent.com/maxcomuk/Roblox-Ui-Libaries/main/Testing%20Vortex%20Hub%20Key%20System.lua"))()
-
-Keylib:Init({
-	Description = "Use the get key link and paste it in your browser, once you have the key use it below",
-	DiscordLink = "https://discord.gg/ZbgeVWgYPd",
-	KeyLink = "https://workink.net/1ZQb/hrvpte1t",
-	Callback = function(Key)
-		if Key == "1234" then
-			return true
-		end
-	end
-})
-
-
 local LoadingScreenUI = {}
 
 local TweenService = game:GetService("TweenService")
