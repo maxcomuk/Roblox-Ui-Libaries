@@ -85,7 +85,7 @@ function LoadingScreenUI:Load()
 	
 	local FadeInfo = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0, false, 0)
 	local FadeGoal = {}
-	FadeGoal.Size = UDim2.new(0.3, 0, 0.3, 0)
+	FadeGoal.Size = UDim2.new(0.2, 0, 0.2, 0)
 	local FadeTween = TweenService:Create(Main, FadeInfo, FadeGoal)
 
 	local LoadingInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, false, 0.1)
