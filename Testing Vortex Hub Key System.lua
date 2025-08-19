@@ -155,12 +155,12 @@ function Lib:Init(Settings)
 	local DiscordFrame = Instance.new("Frame")
 	local UICorner_3 = Instance.new("UICorner")
 	local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
-	local TextButton = Instance.new("TextButton")
+	local TextButton = Instance.new("TextBox")
 	local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
 	local GetKeyFrame = Instance.new("Frame")
 	local UICorner_4 = Instance.new("UICorner")
 	local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
-	local TextButton_2 = Instance.new("TextButton")
+	local TextButton_2 = Instance.new("TextBox")
 	local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
 	local CheckKeyFrame = Instance.new("Frame")
 	local UICorner_5 = Instance.new("UICorner")
@@ -269,7 +269,8 @@ function Lib:Init(Settings)
 	TextButton.Position = UDim2.new(0.5, 0, 0.5, 0)
 	TextButton.Size = UDim2.new(1, 0, 1, 0)
 	TextButton.Font = Enum.Font.SourceSansBold
-	TextButton.Text = Settings["DiscordLink"]
+	TextButton.PlaceholderText = Settings["DiscordLink"]
+	TextButton.Text = ""
 	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextButton.TextSize = 25.000
 
@@ -299,7 +300,8 @@ function Lib:Init(Settings)
 	TextButton_2.Position = UDim2.new(0.5, 0, 0.5, 0)
 	TextButton_2.Size = UDim2.new(1, 0, 1, 0)
 	TextButton_2.Font = Enum.Font.SourceSansBold
-	TextButton_2.Text = Settings["KeyLink"]
+	TextButton_2.PlaceholderText = Settings["KeyLink"]
+	TextButton_2.Text = ""
 	TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextButton_2.TextSize = 25.000
 
