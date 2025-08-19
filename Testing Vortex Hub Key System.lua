@@ -406,6 +406,7 @@ function Lib:Init(Settings)
     local conn5 = nil
     local conn6 = nil
     local conn7 = nil
+	local conn8 = nil
 
 	local function MakeDraggable()
 		local script = Instance.new('LocalScript', Main)
@@ -485,6 +486,12 @@ function Lib:Init(Settings)
         end
     end)
 
+	conn8 = TextButton_2.MouseButton1Click:Connect(function()
+		if setclipboard then
+			setclipboard(Settings.KeyLink)
+		end
+	end)	
+
     if readfile and isfile and isfile("Vortex Hub Key System #1.txt") then
         local CurrentKeyinput = readfile("Vortex Hub Key System #1.txt")
         local Success = Settings.Callback(CurrentKeyinput)
@@ -500,6 +507,7 @@ function Lib:Init(Settings)
                 if conn5 then conn5:Disconnect() end
                 if conn6 then conn6:Disconnect() end
                 if conn7 then conn7:Disconnect() end
+				if conn8 then conn8:Disconnect() end
                 VortexHubKeySystem:Destroy()
             end
 		else
@@ -517,6 +525,7 @@ function Lib:Init(Settings)
             if conn5 then conn5:Disconnect() end
             if conn6 then conn6:Disconnect() end
         	if conn7 then conn7:Disconnect() end
+			if conn8 then conn8:Disconnect() end
             VortexHubKeySystem:Destroy()
 		end
 	else
@@ -532,6 +541,7 @@ function Lib:Init(Settings)
             if conn5 then conn5:Disconnect() end
             if conn6 then conn6:Disconnect() end
         	if conn7 then conn7:Disconnect() end
+			if conn8 then conn8:Disconnect() end
             VortexHubKeySystem:Destroy()
 		end
 		return _VortexHubKey568910
