@@ -386,7 +386,7 @@ function Lib:Init(Settings)
 	VortexHubLogo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	VortexHubLogo.BorderSizePixel = 0
 	VortexHubLogo.Position = UDim2.new(0.5, 0, 0.00999999978, 0)
-	VortexHubLogo.Size = UDim2.new(0.150000006, 0, 0.150000006, 0)
+	VortexHubLogo.Size = UDim2.new(0.1, 0, 0.1, 0)
 	VortexHubLogo.Visible = false
 	VortexHubLogo.Image = "rbxassetid://75647520461048"
 
@@ -497,7 +497,7 @@ function Lib:Init(Settings)
         if Success then
             _VortexHubKey = true
 
-            if VortexHubKeySystem then
+            if VortexHubKeySystem and VortexHubLogo then
                 if conn1 then conn1:Disconnect() end
                 if conn2 then conn2:Disconnect() end
                 if conn3 then conn3:Disconnect() end
@@ -507,6 +507,7 @@ function Lib:Init(Settings)
                 if conn7 then conn7:Disconnect() end
 				if conn8 then conn8:Disconnect() end
                 VortexHubKeySystem:Destroy()
+				VortexHubLogo:Destroy()
             end
 		else
 			_VortexHubKey = false
@@ -515,7 +516,7 @@ function Lib:Init(Settings)
 	end
 
 	if _VortexHubKey then
-		if VortexHubKeySystem then
+		if VortexHubKeySystem and VortexHubLogo then
             if conn1 then conn1:Disconnect() end
             if conn2 then conn2:Disconnect() end
             if conn3 then conn3:Disconnect() end
@@ -525,13 +526,14 @@ function Lib:Init(Settings)
         	if conn7 then conn7:Disconnect() end
 			if conn8 then conn8:Disconnect() end
             VortexHubKeySystem:Destroy()
+			VortexHubLogo:Destroy()
 		end
 	else
 		repeat task.wait() until _VortexHubKey == true
 		if _VortexHubKey and writefile then
 			writefile("Vortex Hub Key System #1.txt", KeyInput.Text)
 		end
-		if VortexHubKeySystem then
+		if VortexHubKeySystem and VortexHubLogo then
             if conn1 then conn1:Disconnect() end
             if conn2 then conn2:Disconnect() end
             if conn3 then conn3:Disconnect() end
@@ -541,6 +543,7 @@ function Lib:Init(Settings)
         	if conn7 then conn7:Disconnect() end
 			if conn8 then conn8:Disconnect() end
             VortexHubKeySystem:Destroy()
+			VortexHubLogo:Destroy()
 		end
 		return _VortexHubKey568910
     end
