@@ -484,7 +484,7 @@ function Lib:Init(Settings)
     end)
 
     if readfile and isfile and isfile("Vortex Hub Key System #1.txt") then
-        local CurrentKeyinput = readfile("Vortex hub Key System #1.txt")
+        local CurrentKeyinput = readfile("Vortex Hub Key System #1.txt")
         local Success = Settings.Callback(CurrentKeyinput)
 
         if Success then
@@ -500,6 +500,21 @@ function Lib:Init(Settings)
                 if conn7 then conn7:Disconnect() end
                 VortexHubKeySystem:Destroy()
             end
+		else
+			repeat task.wait() until _VortexHubKey == true
+			if _VortexHubKey and writefile then
+				writefile("Vortex Hub Key System #1.txt", KeyInput.Text)
+			end
+                if conn1 then conn1:Disconnect() end
+                if conn2 then conn2:Disconnect() end
+                if conn3 then conn3:Disconnect() end
+                if conn4 then conn4:Disconnect() end
+                if conn5 then conn5:Disconnect() end
+                if conn6 then conn6:Disconnect() end
+                if conn7 then conn7:Disconnect() end
+                VortexHubKeySystem:Destroy()
+		end
+		return _VortexHubKey568910
         end
     end
 end
