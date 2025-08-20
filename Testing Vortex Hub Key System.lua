@@ -257,6 +257,12 @@ function Lib:Init(Settings)
 		end
 	end)
 
+	local conn2 = GetKey.MouseButton1Click:Connect(function()
+		if setclipboard then
+			setclipboard(Settings.KeyLink)
+		end
+	end
+
 	if readfile and isfile and isfile("Vortex Hub Key #1.txt") then
 		local Key = readfile("Vortex Hub Key #1.txt")
 		local Success = Settings.Callback(Key)
@@ -266,6 +272,7 @@ function Lib:Init(Settings)
 
 			if VortexHubKeySystem then
 				if conn1 then conn1:Disconnect() end
+				if conn2 then conn2:Disconnect() end
 				VortexHubKeySystem:Destroy()
 			end
 			return true
@@ -277,6 +284,7 @@ function Lib:Init(Settings)
 	if _VortexHubKey then
 		if VortexHubKeySystem then
 			if conn1 then conn1:Disconnect() end
+			if conn2 then conn2:Disconnect() end
 			VortexHubKeySystem:Destroy()
 		end
 		return true
