@@ -58,8 +58,8 @@ function LoadingLib:Load()
 
 	local function LoadUi()
 		local Mainui = MainLoadingScreenGui
-		local LoadingCircle = LoadingUi:FindFirstChildOfClass("ImageLabel")
-		local Text = script.Parent
+		local LoadingCircle = LoadingUi
+		local Text = LoadingText
 
 		local TweenService = game:GetService("TweenService")
 
@@ -232,8 +232,8 @@ function Lib:Init(Settings)
 	UIAspectRatioConstraint_3.AspectRatio = 1.365
 
 	local function CloseUiToggle()
-		local Gui = script.Parent.Parent.Parent
-		local Button = script.Parent
+		local Gui = VortexHubKeySystem
+		local Button = CloseButton
 
 		Button.MouseButton1Click:Connect(function()
 			if Gui then
