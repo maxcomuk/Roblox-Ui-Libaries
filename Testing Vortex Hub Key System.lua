@@ -1,17 +1,17 @@
-print("ran")
 local LoadingLib = {}
 
+local MainLoadingScreenGui = nil
 function LoadingLib:Load()
 	-- Instances:
-	local ScreenGui = Instance.new("ScreenGui")
+	MainLoadingScreenGui = Instance.new("ScreenGui")
 	local LoadingUi = Instance.new("ImageLabel")
 	local ImageLabel = Instance.new("ImageLabel")
 	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 	local LoadingText = Instance.new("TextLabel")
 
 	--Properties:
-	ScreenGui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
-	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	MainLoadingScreenGui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
+	MainLoadingScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	LoadingUi.Name = "LoadingUi"
 	LoadingUi.Parent = ScreenGui
@@ -78,14 +78,16 @@ function LoadingLib:Load()
 		task.spawn(RotateCircle)
 
 		for i = 1, 4 do
-			Text.Text = "Loading"
-			task.wait(0.333)
-			Text.Text = "Loading ."
-			task.wait(0.333)
-			Text.Text = "Loading . ."
-			task.wait(0.333)
-			Text.Text = "Loading . . ."
-			task.wait(0.333)
+			pcall(function()
+				Text.Text = "Loading"
+				task.wait(0.333)
+				Text.Text = "Loading ."
+				task.wait(0.333)
+				Text.Text = "Loading . ."
+				task.wait(0.333)
+				Text.Text = "Loading . . ."
+				task.wait(0.333)
+			end)
 		end
 	end
 	coroutine.wrap(LoadUi)()
@@ -93,7 +95,7 @@ end
 
 LoadingLib:Load()
 
-repeat task.wait() until LoadingLib.ScreenGui == nil
+repeat task.wait() until MainLoadingScreenGui == nil
 
 local Lib = {}
 
