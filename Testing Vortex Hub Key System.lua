@@ -1,3 +1,4 @@
+print("ran")
 local LoadingLib = {}
 
 function LoadingLib:Load()
