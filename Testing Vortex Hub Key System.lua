@@ -14,7 +14,7 @@ function LoadingLib:Load()
 	MainLoadingScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	LoadingUi.Name = "LoadingUi"
-	LoadingUi.Parent = ScreenGui
+	LoadingUi.Parent = MainLoadingScreenGui
 	LoadingUi.AnchorPoint = Vector2.new(0.5, 0.5)
 	LoadingUi.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	LoadingUi.BackgroundTransparency = 1.000
