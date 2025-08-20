@@ -1,6 +1,8 @@
 local LoadingLib = {}
 
 local MainLoadingScreenGui = nil
+local LoadingFinished = false
+
 function LoadingLib:Load()
 	-- Instances:
 	MainLoadingScreenGui = Instance.new("ScreenGui")
@@ -58,7 +60,7 @@ function LoadingLib:Load()
 
 	local function LoadUi()
 		local Mainui = MainLoadingScreenGui
-		local LoadingCircle = LoadingUi
+		local LoadingCircle = ImageLabel
 		local Text = LoadingText
 
 		local TweenService = game:GetService("TweenService")
@@ -72,6 +74,7 @@ function LoadingLib:Load()
 			Tween:Play()
 			Tween.Completed:Connect(function()
 				MainLoadingScreenGui:Destroy()
+				LoadingFinished = true
 			end)
 		end
 
@@ -95,7 +98,7 @@ end
 
 LoadingLib:Load()
 
-repeat task.wait() until MainLoadingScreenGui == nil
+repeat task.wait() until LoadingFinished
 
 local Lib = {}
 
