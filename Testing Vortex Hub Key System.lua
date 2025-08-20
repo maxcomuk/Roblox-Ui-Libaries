@@ -10,7 +10,7 @@ function LoadingLib:Load()
 	local LoadingText = Instance.new("TextLabel")
 
 	--Properties:
-	ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	ScreenGui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	LoadingUi.Name = "LoadingUi"
@@ -56,9 +56,7 @@ function LoadingLib:Load()
 	LoadingText.TextSize = 14.000
 	LoadingText.TextWrapped = true
 
-	local function LoadUi() -- LoadingText.LocalScript 
-		local script = Instance.new('LocalScript', LoadingText)
-
+	local function LoadUi()
 		local Mainui = script.Parent.Parent.Parent
 		local LoadingCircle = script.Parent.Parent:FindFirstChild("ImageLabel")
 		local Text = script.Parent
@@ -95,6 +93,8 @@ end
 
 LoadingLib:Load()
 
+repeat task.wait() until LoadingLib.ScreenGui == nil
+
 local Lib = {}
 
 function Lib:Init(Settings)
@@ -124,7 +124,7 @@ function Lib:Init(Settings)
 
 	--Properties:
 	VortexHubKeySystem.Name = "Vortex Hub Key System"
-	VortexHubKeySystem.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	VortexHubKeySystem.Parent = (gethui and gethui()) or game:GetService("CoreGui")
 	VortexHubKeySystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	ImageLabel.Parent = VortexHubKeySystem
