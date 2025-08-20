@@ -58,7 +58,7 @@ function LoadingLib:Load()
 
 	local function LoadUi()
 		local Mainui = MainLoadingScreenGui
-		local LoadingCircle = script.Parent.Parent:FindFirstChild("ImageLabel")
+		local LoadingCircle = LoadingUi:FindFirstChildOfClass("ImageLabel")
 		local Text = script.Parent
 
 		local TweenService = game:GetService("TweenService")
@@ -71,7 +71,7 @@ function LoadingLib:Load()
 			local Tween = TweenService:Create(LoadingCircle, info, goal)
 			Tween:Play()
 			Tween.Completed:Connect(function()
-				ScreenGui:Destroy()
+				MainLoadingScreenGui:Destroy()
 			end)
 		end
 
@@ -231,9 +231,7 @@ function Lib:Init(Settings)
 	UIAspectRatioConstraint_3.Parent = ImageLabel
 	UIAspectRatioConstraint_3.AspectRatio = 1.365
 
-	local function CloseUiToggle() 
-		local script = Instance.new('LocalScript', CloseButton)
-
+	local function CloseUiToggle()
 		local Gui = script.Parent.Parent.Parent
 		local Button = script.Parent
 
