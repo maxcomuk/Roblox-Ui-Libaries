@@ -57,7 +57,7 @@ function LoadingLib:Load()
 	LoadingText.TextWrapped = true
 
 	local function LoadUi()
-		local Mainui = script.Parent.Parent.Parent
+		local Mainui = MainLoadingScreenGui
 		local LoadingCircle = script.Parent.Parent:FindFirstChild("ImageLabel")
 		local Text = script.Parent
 
