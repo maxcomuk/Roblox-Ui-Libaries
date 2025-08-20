@@ -253,7 +253,7 @@ function Lib:Init(Settings)
 			KeyInput.Text = "Invalid Key"
 			_VortexHubKey = false
 		end
-	end
+	end)
 
 	if readfile and isfile and isfile("Vortex Hub Key #1.txt") then
 		local Key = readfile("Vortex Hub Key #1.txt")
