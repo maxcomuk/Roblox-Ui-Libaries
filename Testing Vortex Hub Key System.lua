@@ -37,7 +37,7 @@ function Lib:Init(Settings)
 	ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ImageLabel.BorderSizePixel = 0
 	ImageLabel.Position = UDim2.new(0.511006355, 0, 0.499089241, 0)
-	ImageLabel.Size = UDim2.new(0.365408748, 0, 0.620400667, 0)
+	ImageLabel.Size = UDim2.new(0.7, 0, 0.7, 0)
 	ImageLabel.Image = "rbxassetid://124981722242022"
 	ImageLabel.ScaleType = Enum.ScaleType.Fit
 
