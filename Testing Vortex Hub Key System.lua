@@ -100,6 +100,8 @@ LoadingLib:Load()
 
 repeat task.wait() until LoadingFinished
 
+print("ran")
+
 local Lib = {}
 
 function Lib:Init(Settings)
