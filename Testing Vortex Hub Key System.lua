@@ -1,3 +1,99 @@
+local LoadingLib = {}
+
+function LoadingLib:Load()
+	-- Instances:
+	local ScreenGui = Instance.new("ScreenGui")
+	local LoadingUi = Instance.new("ImageLabel")
+	local ImageLabel = Instance.new("ImageLabel")
+	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+	local LoadingText = Instance.new("TextLabel")
+
+	--Properties:
+	ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	LoadingUi.Name = "LoadingUi"
+	LoadingUi.Parent = ScreenGui
+	LoadingUi.AnchorPoint = Vector2.new(0.5, 0.5)
+	LoadingUi.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LoadingUi.BackgroundTransparency = 1.000
+	LoadingUi.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	LoadingUi.BorderSizePixel = 0
+	LoadingUi.Position = UDim2.new(0.5, 0, 0.5, 0)
+	LoadingUi.Size = UDim2.new(0, 600, 0, 400)
+	LoadingUi.Image = "rbxassetid://129471211925554"
+	LoadingUi.ScaleType = Enum.ScaleType.Fit
+
+	ImageLabel.Parent = LoadingUi
+	ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+	ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ImageLabel.BackgroundTransparency = 1.000
+	ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ImageLabel.BorderSizePixel = 0
+	ImageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+	ImageLabel.Rotation = 180.000
+	ImageLabel.Size = UDim2.new(0, 179, 0, 178)
+	ImageLabel.Image = "rbxassetid://92506421413143"
+	ImageLabel.ImageTransparency = 0.410
+
+	UIAspectRatioConstraint.Parent = LoadingUi
+	UIAspectRatioConstraint.AspectRatio = 1.500
+
+	LoadingText.Name = "LoadingText"
+	LoadingText.Parent = LoadingUi
+	LoadingText.AnchorPoint = Vector2.new(0.5, 0.5)
+	LoadingText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LoadingText.BackgroundTransparency = 1.000
+	LoadingText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	LoadingText.BorderSizePixel = 0
+	LoadingText.Position = UDim2.new(0.512499988, 0, 0.785000026, 0)
+	LoadingText.Size = UDim2.new(0, 365, 0, 50)
+	LoadingText.Font = Enum.Font.SourceSans
+	LoadingText.Text = "Loading . . ."
+	LoadingText.TextColor3 = Color3.fromRGB(0, 122, 252)
+	LoadingText.TextScaled = true
+	LoadingText.TextSize = 14.000
+	LoadingText.TextWrapped = true
+
+	local function LoadUi() -- LoadingText.LocalScript 
+		local script = Instance.new('LocalScript', LoadingText)
+
+		local Mainui = script.Parent.Parent.Parent
+		local LoadingCircle = script.Parent.Parent:FindFirstChild("ImageLabel")
+		local Text = script.Parent
+
+		local TweenService = game:GetService("TweenService")
+
+		local function RotateCircle()
+			local info = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 2, false, 0)
+			local goal = {}
+			goal.Rotation = LoadingCircle.Rotation + 1080
+
+			local Tween = TweenService:Create(LoadingCircle, info, goal)
+			Tween:Play()
+			Tween.Completed:Connect(function()
+				ScreenGui:Destroy()
+			end)
+		end
+
+		task.spawn(RotateCircle)
+
+		for i = 1, 4 do
+			Text.Text = "Loading"
+			task.wait(0.333)
+			Text.Text = "Loading ."
+			task.wait(0.333)
+			Text.Text = "Loading . ."
+			task.wait(0.333)
+			Text.Text = "Loading . . ."
+			task.wait(0.333)
+		end
+	end
+	coroutine.wrap(LoadUi)()
+end
+
+LoadingLib:Load()
+
 local Lib = {}
 
 function Lib:Init(Settings)
@@ -145,6 +241,51 @@ function Lib:Init(Settings)
 		end)
 	end
 	coroutine.wrap(CloseUiToggle)()
+
+	local conn1 = CheckKey.MouseButton1Click:Connect(function()
+		local Key = KeyInput.Text
+		local Success = Settings.Callback(Key)
+
+		if Success then
+			_VortexHubKey = true
+		else
+			KeyInput.Text = "Invalid Key"
+			_VortexHubKey = false
+		end
+	end
+
+	if readfile and isfile and isfile("Vortex Hub Key #1.txt") then
+		local Key = readfile("Vortex Hub Key #1.txt")
+		local Success = Settings.Callback(Key)
+
+		if Success then
+			_VortexHubKey = true
+
+			if VortexHubKeySystem then
+				if conn1 then conn1:Disconnect() end
+				VortexHubKeySystem:Destroy()
+			end
+			return true
+		else
+			_VortexHubKey = false
+		end
+	end
+
+	if _VortexHubKey then
+		if VortexHubKeySystem then
+			if conn1 then conn1:Disconnect() end
+			VortexHubKeySystem:Destroy()
+		end
+		return true
+	else
+		repeat task.wait() until _VortexHubKey == true
+		if _VortexHubKey and writefile then
+			writefile("Vortex Hub Key #1.txt", KeyInput.Text)
+			if conn1 then conn1:Disconnect() end
+			VortexHubKeySystem:Destroy()
+		end
+	end
+	return _VortexHubKey
 end
 getgenv.Lib = Lib
 return Lib
