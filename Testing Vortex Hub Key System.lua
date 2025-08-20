@@ -261,7 +261,7 @@ function Lib:Init(Settings)
 		if setclipboard then
 			setclipboard(Settings.KeyLink)
 		end
-	end
+	end)
 
 	if readfile and isfile and isfile("Vortex Hub Key #1.txt") then
 		local Key = readfile("Vortex Hub Key #1.txt")
