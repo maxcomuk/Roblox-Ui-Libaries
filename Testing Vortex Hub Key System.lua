@@ -293,6 +293,7 @@ function Lib:Init(Settings)
 		if _VortexHubKey and writefile then
 			writefile("Vortex Hub Key #1.txt", KeyInput.Text)
 			if conn1 then conn1:Disconnect() end
+			if conn2 then conn2:Disconnect() end
 			VortexHubKeySystem:Destroy()
 		end
 	end
