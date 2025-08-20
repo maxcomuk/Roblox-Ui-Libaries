@@ -288,5 +288,5 @@ function Lib:Init(Settings)
 	end
 	return _VortexHubKey
 end
-getgenv.Lib = Lib
+getgenv().Lib = Lib
 return Lib
