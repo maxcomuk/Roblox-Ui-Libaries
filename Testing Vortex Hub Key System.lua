@@ -72,10 +72,9 @@ function LoadingLib:Load()
 
 			local Tween = TweenService:Create(LoadingCircle, info, goal)
 			Tween:Play()
-			Tween.Completed:Connect(function()
-				MainLoadingScreenGui:Destroy()
-				LoadingFinished = true
-			end)
+			Tween.Completed:Wait()
+			LoadingFinished = true
+			MainLoadingScreenGui:Destroy()
 		end
 
 		task.spawn(RotateCircle)
@@ -99,8 +98,6 @@ end
 LoadingLib:Load()
 
 repeat task.wait() until LoadingFinished
-
-print("ran")
 
 local Lib = {}
 
