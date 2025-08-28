@@ -93,13 +93,112 @@ local function PlayLoadingScreen()
 
 	LoadingCircle.Visible = false	
 	LoadingText.Visible = false
+
+    LoadingGui:Destroy()
 end
 
 PlayLoadingScreen()
 
-local KeyLib = {}
+local function Unloadui(KeySystemGui)
+	-- Instances:
+	local LoadingGui = Instance.new("ScreenGui")
+	local Background = Instance.new("ImageLabel")
+	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+	local LoadingCircle = Instance.new("ImageLabel")
+	local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+	local LoadingText = Instance.new("TextLabel")
+	local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
 
-function KeyLib:Init()
+	--Properties:
+	LoadingGui.Name = "LoadingGui"
+	LoadingGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	LoadingGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Background.Name = "Background"
+	Background.Parent = LoadingGui
+	Background.AnchorPoint = Vector2.new(0.5, 0.5)
+	Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Background.BackgroundTransparency = 1.000
+	Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Background.BorderSizePixel = 0
+	Background.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Background.Size = UDim2.new(0.5, 0, 0.5, 0)
+	Background.Image = "rbxassetid://92023378529281"
+	Background.ScaleType = Enum.ScaleType.Fit
+
+	UIAspectRatioConstraint.Parent = Background
+	UIAspectRatioConstraint.AspectRatio = 1.500
+
+	LoadingCircle.Name = "LoadingCircle"
+	LoadingCircle.Parent = Background
+	LoadingCircle.AnchorPoint = Vector2.new(0.5, 0.5)
+	LoadingCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LoadingCircle.BackgroundTransparency = 1.000
+	LoadingCircle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	LoadingCircle.BorderSizePixel = 0
+	LoadingCircle.Position = UDim2.new(0.246468022, 0, 0.499637932, 0)
+	LoadingCircle.Size = UDim2.new(0.183972165, 0, 0.277610213, 0)
+	LoadingCircle.Image = "rbxassetid://75604315598837"
+	LoadingCircle.Visible = true
+
+	UIAspectRatioConstraint_2.Parent = LoadingCircle
+	UIAspectRatioConstraint_2.AspectRatio = 0.994
+
+	LoadingText.Name = "LoadingText"
+	LoadingText.Parent = Background
+	LoadingText.AnchorPoint = Vector2.new(0.5, 0.5)
+	LoadingText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LoadingText.BackgroundTransparency = 1.000
+	LoadingText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	LoadingText.BorderSizePixel = 0
+	LoadingText.Position = UDim2.new(0.650912166, 0, 0.49402976, 0)
+	LoadingText.Size = UDim2.new(0.400000006, 0, 0.200000003, 0)
+	LoadingText.Font = Enum.Font.SourceSansBold
+	LoadingText.Text = "Loading Key System"
+	LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	LoadingText.TextSize = 15
+	LoadingText.Visible = true
+
+	UIAspectRatioConstraint_3.Parent = LoadingText
+
+    local Info1 = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, false, 0)
+    local Goal1 = {}
+    Goal1.Rotation = 360
+    local Tween1 = TweenService:Create(LoadingCircle, Info1, Goal1)
+    
+    local Info2 = TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingStyle.InOut, -1, true, 0)
+    local Goal2 = {}
+    Goal2.TextTransparency = 1
+    local Tween2 = TweenService:Create(LoadingText, Info2, Goal2)
+
+    local Info3 = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0, false, 0)
+    local Goal3 = {}
+    Goal3.Size = UDim2.new(0, 0, 0, 0)
+    local Tween3 = TweenService:Create(Background, Info3, Goal3)
+
+    KeySystemGui:Destroy()
+    
+    Tween1:Play()
+    Tween2:Play()
+    wait(5)
+    Tween3:Play()
+    Tween3.Completed:Wait()
+end
+
+local Lib = {}
+
+function Lib:Init(Settings)
+    for name, value in pairs({
+        ["KeyLink"] = "https://google.com",
+        ["Callback"] = function(...) return true end}) do
+        if Settings[name] == nil and typeof(Settings[name]) ~= value then
+            Settings[name] = value
+        end 
+    end
+
+    -- Virtual Stored Key
+    _VortexHubSpecialKey = false
+
 	-- Instances:
 	local KeySystemGui = Instance.new("ScreenGui")
 	local ImageLabel = Instance.new("ImageLabel")
@@ -123,7 +222,7 @@ function KeyLib:Init()
 	ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ImageLabel.BorderSizePixel = 0
 	ImageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-	ImageLabel.Size = UDim2.new(0.5, 0, 0.5, 0)
+	ImageLabel.Size = UDim2.new(0.6, 0, 0.6, 0)
 	ImageLabel.Image = "rbxassetid://84339546235230"
 	ImageLabel.ScaleType = Enum.ScaleType.Fit
 
@@ -195,4 +294,59 @@ function KeyLib:Init()
 
 	UIAspectRatioConstraint_3.Parent = TextLabel
 	UIAspectRatioConstraint_3.AspectRatio = 6.958
+
+    local conn1 = GetKey.MouseButton1Click:Connect(function()
+        if setclipboard then
+            setclipboard(Settings.KeyLink)
+        end
+    end)
+
+    local conn2 = CheckKey.MouseButton1Click:Connect(function()
+        local Key = KeyInput.Text
+        local Success = Settings.Callback(Key)
+
+        if Success then
+            _VortexHubSpecialKey = true
+        else
+            _VortexHubSpecialKey = false
+        end
+    end)
+
+    if readfile and isfile and isfile("Vortex Hub Key System #1.txt") then
+        local Key = readfile("Vortex Hub Key System #1.txt")
+        local Success = Settings.Callback(Key)
+
+        if Success then
+            _VortexHubSpecialKey = true
+
+            if KeySystemGui then
+                if conn1 then conn1:Disconnect() end
+                if conn2 then conn2:Disconnect() end
+                KeySystemGui:Destroy()
+            end
+            return true
+        else
+            _VortexHubSpecialKey = false
+        end
+    end
+
+    if _VortexHubSpecialKey then
+        if KeySystemGui then
+            if conn1 then conn1:Disconnect() end
+            if conn2 then conn2:Disconnect() end
+            KeySystemGui:Destroy()
+        end
+        return true
+    else
+        repeat task.wait() until _VortexHubSpecialKey == true
+        if _VortexHubSpecialKey and writefile then
+            writefile("Vortex Hub Key System #1.txt", KeyInput.Text)
+            if conn1 then conn1:Disconnect() end
+            if conn2 then conn2:Disconnect() end
+            Unloadui(KeySystemGui)
+        end
+    end
+    return _VortexHubSpecialKey
 end
+getgenv().Lib = KeyLib
+return Lib
