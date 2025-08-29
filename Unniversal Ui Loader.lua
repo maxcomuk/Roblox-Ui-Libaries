@@ -166,7 +166,7 @@ local function Unloadui(KeySystemGui)
     Goal1.Rotation = 360
     local Tween1 = TweenService:Create(LoadingCircle, Info1, Goal1)
     
-    local Info2 = TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingStyle.InOut, -1, true, 0)
+    local Info2 = TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true, 0)
     local Goal2 = {}
     Goal2.TextTransparency = 1
     local Tween2 = TweenService:Create(LoadingText, Info2, Goal2)
