@@ -154,7 +154,7 @@ local function Unloadui(KeySystemGui)
 	LoadingText.Position = UDim2.new(0.650912166, 0, 0.49402976, 0)
 	LoadingText.Size = UDim2.new(0.400000006, 0, 0.200000003, 0)
 	LoadingText.Font = Enum.Font.SourceSansBold
-	LoadingText.Text = "Loading Key System"
+	LoadingText.Text = "Unloading Key System"
 	LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
 	LoadingText.TextSize = 15
 	LoadingText.Visible = true
@@ -183,6 +183,8 @@ local function Unloadui(KeySystemGui)
     wait(5)
     Tween3:Play()
     Tween3.Completed:Wait()
+
+	LoadingGui:Destroy()
 end
 
 local Lib = {}
