@@ -308,6 +308,7 @@ function Lib:Init(Settings)
         if Success then
             _VortexHubSpecialKey = true
         else
+			KeyInput.Text = "Invalid Key"
             _VortexHubSpecialKey = false
         end
     end)
